@@ -19,10 +19,31 @@
   .search-wrap button { background:var(--accent); border:none; color:#0d0d0f; font-family:"Oswald",sans-serif; font-weight:600; font-size:0.9rem; padding:0 1.2rem; cursor:pointer; border-radius:0 4px 4px 0; }
   .search-wrap button:hover { background:#e0bc5a; }
 
-  .tabs { background:var(--surface); border-bottom:1px solid var(--border); display:flex; padding:0 1.5rem; overflow-x:auto; }
+  .tabs { background:var(--surface); display:flex; padding:0 1.5rem; overflow-x:auto; }
   .tab { display:flex; align-items:center; gap:0.5rem; padding:0.75rem 1rem; cursor:pointer; white-space:nowrap; font-size:0.78rem; color:var(--text-dim); border:none; background:none; border-bottom:3px solid transparent; transition:color 0.2s,border-color 0.2s; font-family:"Oswald",sans-serif; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; }
   .tab:hover { color:var(--text); }
   .tab.active { border-bottom-color:var(--accent); }
+
+  .tab-dropdown-wrap { position:relative; display:flex; align-items:stretch; }
+  .tab-dropdown-wrap .tab { color:var(--accent); }
+  .tab-dropdown-wrap .tab:hover { color:#fff; }
+  .dropdown-chevron { font-size:0.6rem; margin-left:2px; transition:transform 0.2s; display:inline-block; }
+  .dropdown-chevron.open { transform:rotate(180deg); }
+  .general-dropdown {
+    display:none; position:absolute; top:100%; left:0; z-index:200;
+    background:#13131a; border:1px solid var(--accent);
+    border-top:2px solid var(--accent); min-width:360px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.7);
+  }
+  .general-dropdown.open { display:block; }
+  .general-dropdown a {
+    display:block; color:var(--text-dim); font-family:"Source Sans 3",sans-serif;
+    font-size:0.88rem; padding:0.6rem 1.2rem; text-decoration:none;
+    border-bottom:1px solid var(--border); transition:background 0.15s,color 0.15s;
+  }
+  .general-dropdown a:last-child { border-bottom:none; }
+  .general-dropdown a:hover { background:var(--surface2); color:var(--accent); }
+  .general-dropdown a::before { content:"→ "; color:var(--accent); font-size:0.75rem; }
 
   .main { max-width:1060px; margin:0 auto; padding:1.5rem; }
   .hero { text-align:center; padding:1.2rem 0 1rem; border-bottom:1px solid var(--border); margin-bottom:1.2rem; }
@@ -69,7 +90,32 @@
   </div>
 </header>
 
-<nav class="tabs" id="tabs"></nav>
+<div style="background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:stretch;">
+  <nav class="tabs" id="tabs" style="border-bottom:none;flex:1;"></nav>
+  <div class="tab-dropdown-wrap" id="generalWrap">
+    <button class="tab" id="generalBtn" onclick="toggleGeneral(event)">
+      📋 Общие правила проекта <span class="dropdown-chevron" id="generalChevron">▼</span>
+    </button>
+    <div class="general-dropdown" id="generalDropdown">
+      <a href="https://forum.majestic-rp.ru/threads/osnovnyye-pravila-proyekta.8036/" target="_blank">Основные правила проекта</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-ogrableniya-bankov.299735/" target="_blank">Правила ограбления банков</a>
+      <a href="https://forum.majestic-rp.ru/threads/obshchiye-pravila-semeinykh-organizatsii.1061331/" target="_blank">Общие правила семейных организаций</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-ograblenii-i-pokhishchenii.8254/" target="_blank">Правила ограблений и похищений</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-napadeniya-oborony-ostrova-kaio-periko.645651/" target="_blank">Правила нападения / обороны острова Кайо-Перико</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-napadeniya-oborony-territorii-forta-zankudo.8115/" target="_blank">Правила нападения / обороны Форта-Занкудо</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-perekhvata-postavok.123972/" target="_blank">Правила перехвата поставок</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-zakhvata-tsekhov-dilerov.1823529/" target="_blank">Правила захвата цехов / дилеров</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-igrovykh-zon.8084/" target="_blank">Правила игровых зон</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-voyennogo-polozheniya.7524/" target="_blank">Правила военного положения</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-dlya-liderov-fraktsii.8048/" target="_blank">Правила для лидеров фракций</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-ogrableniya-biznesov.8050/" target="_blank">Правила ограбления бизнесов</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-provedeniya-igrovykh-zakhvatov-teraktov.8843/" target="_blank">Правила проведения игровых захватов / терактов</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-foruma.5245/" target="_blank">Правила форума</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-proverki-na-storonneye-po.166680/" target="_blank">Правила проверки на стороннее ПО</a>
+      <a href="https://forum.majestic-rp.ru/threads/pravila-i-obyazannosti-administratorov.22919/" target="_blank">Правила и обязанности администраторов</a>
+    </div>
+  </div>
+</div>
 
 <div class="main">
   <div class="hero" id="hero">
@@ -211,6 +257,21 @@ document.addEventListener("keydown", e => {
   }
   if (e.key === "Escape") {
     document.querySelectorAll(".card-wrap.pinned").forEach(el => el.classList.remove("pinned"));
+  }
+});
+
+function toggleGeneral(e) {
+  e.stopPropagation();
+  const d = document.getElementById("generalDropdown");
+  const c = document.getElementById("generalChevron");
+  d.classList.toggle("open");
+  c.classList.toggle("open");
+}
+document.addEventListener("click", function(e) {
+  const wrap = document.getElementById("generalWrap");
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById("generalDropdown").classList.remove("open");
+    document.getElementById("generalChevron").classList.remove("open");
   }
 });
 
